@@ -1,76 +1,108 @@
-# Introduction to HTML
+# Introduction To CSS
 
-!!! note "Task: Preview The Terrarium"
+## 01 - CSS In Action
 
-    Let's preview the finished Terrarium app to see what we are trying to build today.
+Welcome back.
 
-## 01 Document Structure
+In the previous chapter, we learned core concepts of HTML and built out the basic structure for our virtual terrarium.
 
-Today we’ll get started building our virtual terrarium while learning the foundational concepts of HTML.
+!!! note "Task: Preview the App"
 
-Let's start with the document structure. The `<!DOCTYPE html>` declaration at the top of our file tells the browser we’re using HTML5. This is important for ensuring modern web standards are followed.
+    Let's see what our digital terrarium looks like now.Preview the webpage using the Live Server extension - or use `python -m http.server 5000` to start a preview server from the terminal. You should see a single page with all images lined up on one side.
 
-Begore we move on, let's talk about elements and tags. Elements are the building blocks of HTML, and they consist of an opening tag, content, and a closing tag. Tags are keywords surrounded by angle brackets that define the structure of our content. We'll be working with various tags and elements as we build our terrarium.
+In this lesson, we're going to add styles to our online terrarium and learn more about several CSS concepts: like the cascade and inheritance, the use of selectors & properties, positioning, and using CSS to build layouts and position components.
 
-We’ll start by adding a heading using the `<h1>` tag. This tag represents the most important heading on the page, and it’s typically used for the main title or headline.
+In the process we will slowly transform our terrarium into the stylish home for our plants we always wanted!
 
-Next, we add the `<html>` element. This is the root of our document.
+## 02 - Stylesheets & Setup
 
-Inside the `<html>` tag, we create two main sections: `<head>` and `<body>`. The `<head>` contains meta-information, like the document’s title, while the `<body>` holds the main content that will be displayed on the webpage.
+`Stylesheets` are like a collection of design ideas and instructions for your home. Just like you have different design themes for different rooms in your house, stylesheets define the overall look and feel of your website.
 
-Finally, we add a `<title>` tag within the `<head>` with the text "Welcome to my Virtual Terrarium". This title appears in the browser tab and is important for user experience and SEO.
+Let's quickly look at our HTML code to see how we connect this new "stylesheet" to the "structure" of our web application.
 
-## 02 Document Organization
+```html
+<!-- import the webpage's stylesheet -->
+<link rel="stylesheet" href="./style.css" />
+```
 
-In this lesson, we will add some key elements to our document and discuss document organization.
+You learned about the `link` tag in the previous HTML chapter. So all we need to do now is create the stylesheet file named there.
 
-First, inside the `<head>` section, add a `<meta>` tag. Metadata provides information about the document, such as its author, description, and keywords. This information is used by search engines and browsers to better understand and display our content.
+!!! note "Task: Create new `style.css` file"
+In your terrarium folder, create a new empty file called style.css. Right now there is nothing in the stylesheet. Let's fix that next.
 
-Next, let’s link some external resources to our document. Add a `<link>` tag to link our stylesheet. This allows us to style our webpage with custom CSS. Then, add a `<script>` tag to link our JavaScript file. These external resources will enhance the functionality and appearance of our webpage. We’ll cover the specifics of these tags and their attributes in future lessons.
+## 03 - Cascading & Inheritance
 
-Now, let’s organize our content by creating a main container. Inside the `<body>` section, add a `<div>` element. This `<div>` will act as a container that wraps all our content. Using `<div>` elements to group content is a common practice in HTML, as it helps us organize the page structure and apply styles more effectively.
+`Cascading` is like the flow of design decisions in your home. When you have multiple design ideas for a room, you prioritize them based on importance. Similarly, in CSS, styles cascade from one rule to another, with the most specific rule taking precedence.
 
-Let's further organize our content by adding another container for plant images. Inside the main `<div>`, add another `<div>` element. This will serve as a placeholder for our plant images. Grouping elements using `<div>` allows us to manage and style similar elements together, making our HTML more organized and easier to maintain.
+In this "cascade",
 
-We’ve added the basic structure and elements for our virtual terrarium. In the next lesson, we’ll explore attributes and how they provide additional information about HTML elements.
+- the style set by you (the website developer) takes priority over the default style provided by the browser.
+- styles you set "inline" in your HTML can override styles you set set externally in a stylesheet.
 
-## 03 Document Attributes
+This gives you more granular control over the styling of every aspect of your webpage. Let's see this in action.
 
-Here we'll explore attributes and how they provide additional information about HTML elements.
+1. **Task**: Add an inline style to our terrarium like this - what happens?
 
-Attributes are used to specify properties like character encoding, viewport settings, IDs, classes, and alternative text for accessibility. We’ll be using attributes to enhance our document and make it more interactive.
+```html
+<h1 style="color: red">My Terrarium</h1>
+```
 
-First, let's the `lang` attribute to the `html` element. It specifies the language of our content, which is useful for accessibility and SEO.
+1. **Task**: Now try adding this style to the stylesheet - what happens now??
 
-Next, we'll update our metadata tags with attributes. Inside the `<head>` section, update the `<meta>` tag to include the `charset="utf-8"` attribute. This specifies the character encoding for our document, ensuring that text is displayed correctly. Using UTF-8 is standard practice because it supports a wide range of characters and symbols.
+```css
+h1 {
+  color: blue;
+}
+```
 
-Now, add another `<meta>` tag with the `name="viewport"` and `content="width=device-width, initial-scale=1"` attributes. This is crucial for responsive design. It ensures our webpage scales correctly on different devices, providing a better user experience on both desktops and mobile phones.
+`Inheritance`:
+is like inheriting design elements from your family. Just like you may inherit certain features or design preferences from your parents, in CSS, elements can inherit styles from their parent elements.
 
-Next, let’s add attributes to our external resource tags. Update the `<link>` tag to include the `rel="stylesheet"` and `href=""` attributes. The `rel` attribute specifies the relationship as a stylesheet, and the `href` attribute provides the path to the CSS file. Then, update the `<script>` tag to include the `src=""` and `defer` attributes. The `src` attribute specifies the path to the script, and the `defer` attribute ensures the script loads after the HTML is fully parsed, which helps improve page load speed and performance.
+1. **Task**: Set the body's font to a given font, and check to see a nested element's font.
 
-Now, let’s add attributes to our div containers. Add the `id="page"` attribute to the main container `<div>` and the `class="container"` attribute to the plant container `<div>`. The `id` attribute uniquely identifies an element, which is useful for applying specific styles in CSS and targeting it with JavaScript. The `class` attribute allows us to apply the same styles to multiple elements.
+```css
+body {
+  font-family: helvetica, arial, sans-serif;
+}
+```
 
-Finally, let's add some plant images. Inside the `<div class="container">`, add multiple `<div class="plant-holder">` elements. Each plant holder will contain an `<img>` element for a plant image. For example, add `<img class="plant" id="plant1" src="./images/plant1.png" />` inside a plant holder. The `src` attribute specifies the path to the image file.
+1. **Task**: Now open your browser's console to the 'Elements' tab and observe the H1's font. It inherits its font from the body, as stated within the browser
 
-Repeat this for as many plants as you want to include. Here's the completed code for the terrarium.
+1. **Task**: Can we make a nested element take a different property? Try this - now reload the page and see what happens.
 
-## 04 Document Accessibility
+```css
+h1 {
+  font-family: "Lobster", cursive;
+}
+```
 
-In this final lesson, we’ll focus on document accessibility and how to make our content more inclusive.
+## 04 - Selectors & Properties
 
-Accessibility ensures that all users, including those with disabilities, can access and interact with our webpage. Using attributes like `alt` for images provides text descriptions that screen readers can use to describe the images to visually impaired users.
+Welcome back! In this lesson, we will learn about CSS Selectors and get familiar with more CSS properties.
 
-We'll add the `alt` attribute in the `<img>` tags. It provides a text description of the image. This is useful for accessibility, as screen readers use this text to describe the image to visually impaired users. It also helps search engines understand the content of the image.
+`Selectors`:
+Selectors are like the tools you use to choose specific areas of your home for improvement. Just like you use a paintbrush to select a specific wall to paint, CSS selectors help you target specific HTML elements to apply styles to.
 
-Semantic tags, such as `<h1>`, `<nav>`, and `<footer>`, help screen readers understand the structure and hierarchy of the content, making it easier to navigate.
+`Properties`: Properties are like the specific instructions you give to your contractor for each design element in your home. For example, you may specify the color, size, or position of a piece of furniture. In CSS, properties define the specific visual characteristics of an element.
 
-By incorporating these practices, we create a more inclusive web experience that benefits all users. Remember, accessibility is not just about following standards; it's about making the web usable for everyone.
+## 05 - Layouts & Positioning
 
-## 05 Putting It All Together
+Welcome back! In this lesson, we will learn about
 
-Now that we've covered the basics of HTML and document accessibility, let's put it all together to create our virtual terrarium. You can follow along in the handout and repository resources provided.
+`Layouts`: Layouts are like the floor plans for your home. They determine how different elements are arranged and organized within a space. In CSS, layout techniques like flexbox and grid help you create structured and responsive designs.
 
-[Talk through the process of adding the elements, attributes, and images to build the terrarium.]
+`Positioning`: Positioning is like arranging furniture in your home. You can position elements relative to their normal flow or to other elements. CSS provides different positioning options, such as absolute, relative, and fixed, to control the placement of elements on the page.
 
-Close out:
-We've covered the basics of HTML and got a great start on our terrarium. Stay tuned as we dive into styling our terrarium using CSS.
+## 06 - Transitions & Animations
+
+Recap:
+Welcome to the final lesson! Today, we'll review what we learned so far - and talk about some advanced concepts like animations and transitions that you can use, to improve the styling of your application even further!
+
+`Animations`:
+Animations are like adding dynamic elements to your home. Just like you might have a moving sculpture or a rotating ceiling fan, CSS animations bring elements to life by adding motion and visual effects.
+
+`Transitions`:
+Transitions are like smoothly transitioning between different design states in your home. For example, when you open a door, it transitions from closed to open. In CSS, transitions allow you to smoothly change the appearance of an element over a specified duration.
+
+Outro:
+Remember - HTML is like the scaffolding for your website and CSS is like the interior design that makes it visually appealing to the users who come there. Now, it's time to bring your web home to life with JavaScript! Stay tuned for the next lesson where we learn to make things a bit more interactive for users.
