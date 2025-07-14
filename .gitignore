@@ -56,3 +56,6 @@ Desktop.ini
 
 # Linux system files
 .Trash-*/
+
+# Ignore solutions directory
+solutions/
