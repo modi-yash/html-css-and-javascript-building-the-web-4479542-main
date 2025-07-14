@@ -27,5 +27,6 @@
   "notebook.output.fontSize": 0,
   "window.zoomPerWindow": true,
   "terminal.integrated.mouseWheelZoom": true,
-  "editor.mouseWheelZoom": true
+  "editor.mouseWheelZoom": true,
+  "workbench.editor.wrapTabs": false
 }
