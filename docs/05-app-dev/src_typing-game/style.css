@@ -1,0 +1,18 @@
+.highlight {
+  background-color: yellow;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+h1#title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#description {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
