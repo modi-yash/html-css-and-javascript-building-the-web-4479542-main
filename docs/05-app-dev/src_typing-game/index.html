@@ -30,11 +30,11 @@ inside index.html -->
     </section>
     <br>
     <section id="game-container">
-      <div id="quote-container">
-        <div class="wrapper" id="game-wrapper" class="truncate">
+      <div id="quote-container" class="truncate">
+        <div class="wrapper" id="game-wrapper">
           <p id="start-info"><strong>Instructions:</strong><br>Click "Start" to display a quote.</p>
-          <p id="quote"></p>
-          <div class="input-container" class="truncate">
+          <p id="quote" class="quote"></p>
+          <div class="input-container">
             <input type="text" id="typed-value" aria-label="current word" placeholder="Type here..." />
             <button id="start-button">Start</button>
           </div>
@@ -42,7 +42,7 @@ inside index.html -->
       </div>
     </section>
   </main>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>
