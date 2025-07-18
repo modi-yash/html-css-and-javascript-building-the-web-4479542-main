@@ -16,21 +16,33 @@ inside index.html -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Typing Game</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="description" content="Test your typing skills with a quote. Type the quote as fast as you can!">
+  <meta name="keywords" content="typing game, practice typing, quote typing, typing skills, typing speed">
+  <meta name="author" content="Yash Modi">
 </head>
 
 <body>
-  <page>
-    <div id="info-container">
-      <h1 id="title">Typing Game</h1>
-      <p id="description">Test your typing skills with a quote!</p>
-    </div>
-    <div id="game-container">
-      <p id="quote">Click "Start" to display a quote.</p>
-      <p id="message"></p>
-      <input type="text" id="typed-value" aria-label="current word" placeholder="Type here..." />
-      <button id="start">Start</button>
-  </page>
+  <main id="page">
+    <section id="title-info-container">
+      <h1 id="title" class="truncate">Typing Game</h1>
+      <p id="description" class="truncate">Test your typing skills with a quote!</p>
+    </section>
+    <br>
+    <section id="game-container">
+      <div id="quote-container">
+        <div class="wrapper" id="game-wrapper" class="truncate">
+          <p id="start-info"><strong>Instructions:</strong><br>Click "Start" to display a quote.</p>
+          <p id="quote"></p>
+          <div class="input-container" class="truncate">
+            <input type="text" id="typed-value" aria-label="current word" placeholder="Type here..." />
+            <button id="start-button">Start</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
 
 </html>
