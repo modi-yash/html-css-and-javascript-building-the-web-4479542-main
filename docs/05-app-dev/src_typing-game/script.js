@@ -6,20 +6,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const typedValue = document.getElementById("typed-value");
   const startInfo = document.getElementById("start-info");
   const quotes = base_sentences;
+  let quote;
+  let words;
   let gameActive = false;
   let wordsIndex = 0;
+  let startTime;
 
   function checkInput(e) {
-    if (!gameActive) gameActive = true;
+    if (!gameActive) {
+      gameActive = true;
+      startTime = new Date().getTime();
+    }
+    // Check if the typed value matches the current word
     if (typedValue.value === (words[wordsIndex] + " ")) {
       typedValue.value = '';
-      console.log(words[wordsIndex]);
       wordsIndex += 1;
     } else if (wordsIndex === words.length - 1 && typedValue.value.trim() === words[wordsIndex]) {
-      gameActive = false;
-      typedValue.removeEventListener('input');
-    } else if ( !words[wordsIndex].startsWith( typedValue.value ) ) {
-      
+      // End of game!
+      endGame();
+    } else {
+      if (typedValue.value !== '' && !words[wordsIndex].startsWith(typedValue.value)) {
+        typedValue.classList.add('error');
+      } else {
+        typedValue.classList.remove('error');
+      }
     }
   }
 
@@ -27,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Deletes the information displayed at start of every game
     startInfo.style.display = 'none';
     // Decides which quote is chosen
-    var quote = quotes[Math.floor(Math.random() * quotes.length)];
-    var words = quote.split(' ');
-    let wordsSpan = words.map(function (word) { return `<span>${word} </span>` });
+    quote = quotes[Math.floor(Math.random() * quotes.length)];
+    words = quote.split(' ');
+    let wordsSpan = words.map(function (word, index) { return `<span id='word${index}'>${word} </span>` });
     wordsSpan[wordsSpan.length - 1] = wordsSpan.at(-1).trim();
     quoteElement.innerHTML = wordsSpan.join('');
     wordsIndex = 0;
@@ -40,4 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   startButton.addEventListener("click", displayQuote);
 
+  function endGame() {
+    typedValue.removeEventListener('input', checkInput);
+    gameActive = false;
+    const passedTime = (new Date().getTime() - startTime) / 1000;
+    const message = `CONGRATULATIONS! You finished in ${passedTime} seconds.`;
+    startInfo.innerText = message;
+    startInfo.style.display = 'block';
+    quoteElement.innerHTML = '';
+  }
 });
