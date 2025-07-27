@@ -11,13 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function checkInput(e) {
     if (!gameActive) gameActive = true;
-    if (typedValue.value == (words[wordsIndex] + " ")) {
+    if (typedValue.value === (words[wordsIndex] + " ")) {
       typedValue.value = '';
       console.log(words[wordsIndex]);
       wordsIndex += 1;
     } else if (wordsIndex === words.length - 1 && typedValue.value.trim() === words[wordsIndex]) {
       gameActive = false;
       typedValue.removeEventListener('input');
+    } else if ( !words[wordsIndex].startsWith( typedValue.value ) ) {
+      
     }
   }
 
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var quote = quotes[Math.floor(Math.random() * quotes.length)];
     var words = quote.split(' ');
     let wordsSpan = words.map(function (word) { return `<span>${word} </span>` });
-    wordsSpan.at(-1) = 
+    wordsSpan[wordsSpan.length - 1] = wordsSpan.at(-1).trim();
     quoteElement.innerHTML = wordsSpan.join('');
     wordsIndex = 0;
     typedValue.value = '';
