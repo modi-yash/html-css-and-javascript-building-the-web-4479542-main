@@ -41,13 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function startGame(e) {
+    playTenseAudio();
     // Deletes the information displayed at start of every game
     quoteElement.style.display = 'block';
     startInfo.style.display = 'none';
     // Decides which quote is chosen
     quote = quotes[Math.floor(Math.random() * quotes.length)];
     words = quote.split(' ');
-    let wordsSpan = words.map(function (word, index) { return `<span id='word${index}'>${word} </span>` });
+    let wordsSpan = words.map(function (word, index) { return `<span id='word${index}' class='word'>${word} </span>` });
     wordsSpan[wordsSpan.length - 1] = wordsSpan.at(-1).trim();
     quoteElement.innerHTML = wordsSpan.join('');
     document.getElementById("word0").classList.add("highlight");
@@ -59,7 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   startButton.addEventListener("click", startGame);
 
+  function playWinAudio() {
+    document.querySelectorAll('audio').forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    })
+    const audio = new Audio('./Audio/tada/tada.mp3');
+    audio.play();
+  }
+  function playTenseAudio() {
+    const audio = new Audio(`./Audio/tension/tension (${Math.floor(Math.random() * 7)}).mp3`)
+    audio.play();
+  }
+
   function endGame() {
+    playWinAudio();
     typedValue.removeEventListener('input', checkInput);
     typedValue.blur();
     typedValue.value = '';
@@ -71,4 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     startInfo.style.display = 'block';
     quoteElement.innerHTML = '';
   }
+
+  // End of all
 });

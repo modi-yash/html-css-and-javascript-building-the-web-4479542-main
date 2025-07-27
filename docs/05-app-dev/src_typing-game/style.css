@@ -65,9 +65,6 @@ p {
 
 .highlight {
   background-color: yellow;
-  border-radius: 3px;
-  padding-top: 2px;
-  padding-bottom: 2px;
 }
 
 #title-info-container {
@@ -171,4 +168,12 @@ p {
   background-color: lightpink;
   font-weight: bold;
   animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) 3;
+}
+
+.word {
+  border-radius: 3px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 1px;
+  padding-right: 1px;
 }
