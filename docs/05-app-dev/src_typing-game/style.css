@@ -65,9 +65,9 @@ p {
 
 .highlight {
   background-color: yellow;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
+  border-radius: 3px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 #title-info-container {
@@ -100,9 +100,10 @@ p {
 }
 
 #quote {
+  display: none;
   font-size: 20px;
   font-style: italic;
-  color: #174e00;
+  color: #000000;
   max-height: 120px;
   overflow-y: auto;
   overflow-wrap: break-word;
@@ -128,7 +129,7 @@ p {
 #start-info {
   font-size: 20px;
   text-align: center;
-  color: #174e00;
+  color: #000000;
 }
 
 #game-wrapper {
