@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const typedValue = document.getElementById("typed-value");
   const startInfo = document.getElementById("start-info");
   const quotes = base_sentences;
+  let musicBoolean = false;
+  let tensionAudio;
   let quote;
   let words;
   let gameActive = false;
@@ -61,16 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
   startButton.addEventListener("click", startGame);
 
   function playWinAudio() {
-    document.querySelectorAll('audio').forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    })
+    if (tensionAudio) {
+      tensionAudio.pause();
+      tensionAudio.currentTime = 0;
+    }
     const audio = new Audio('./Audio/tada/tada.mp3');
     audio.play();
   }
   function playTenseAudio() {
-    const audio = new Audio(`./Audio/tension/tension (${Math.floor(Math.random() * 7)}).mp3`)
-    audio.play();
+    tensionAudio = new Audio(`./Audio/tension/tension (${Math.floor(Math.random() * 7)}).mp3`)
+    tensionAudio.play();
   }
 
   function endGame() {
@@ -81,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     quoteElement.style.display = 'none';
     gameActive = false;
     const passedTime = (new Date().getTime() - startTime) / 1000;
-    const message = `CONGRATULATIONS! You finished in ${passedTime} seconds.`;
+    const message = `CONGRATULATIONS! You finished ${words.length} words in ${passedTime} seconds.\nThat gives you an average words per minute of ${(Math.floor(words.length / (passedTime) * 6000) / 100)}.`;
     startInfo.innerText = message;
     startInfo.style.display = 'block';
     quoteElement.innerHTML = '';
