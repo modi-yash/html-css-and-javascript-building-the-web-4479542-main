@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const quoteElement = document.getElementById("quote");
   const typedValue = document.getElementById("typed-value");
   const startInfo = document.getElementById("start-info");
+  const musicButton = document.getElementById("music-button");
   const quotes = base_sentences;
   let musicBoolean = false;
   let tensionAudio;
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function startGame(e) {
-    playTenseAudio();
+    if (musicBoolean) playTenseAudio();
     // Deletes the information displayed at start of every game
     quoteElement.style.display = 'block';
     startInfo.style.display = 'none';
@@ -60,8 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     typedValue.addEventListener('input', checkInput);
   }
 
-  startButton.addEventListener("click", startGame);
-
   function playWinAudio() {
     if (tensionAudio) {
       tensionAudio.pause();
@@ -76,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function endGame() {
-    playWinAudio();
+    if (musicBoolean) playWinAudio();
     typedValue.removeEventListener('input', checkInput);
     typedValue.blur();
     typedValue.value = '';
@@ -89,5 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
     quoteElement.innerHTML = '';
   }
 
+  function toggleMusic() {
+    musicBoolean = !musicBoolean;
+  }
+
+  startButton.addEventListener("click", startGame);
+  musicButton.addEventListener("click", toggleMusic);
   // End of all
 });
