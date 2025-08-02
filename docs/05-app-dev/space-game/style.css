@@ -2,3 +2,9 @@ body {
   background-color: rgb(5, 5, 5);
   color: white;
 }
+
+#game-canvas {
+  width: 1024px;
+  height: 768px;
+  border: rgb(255, 255, 255)
+}
