@@ -1,4 +1,8 @@
 // The script runs when everything is loaded.
-addEventListener('DOMContentLoaded', () => {
-  
-});
+class GameObject {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    
+  }
+}
